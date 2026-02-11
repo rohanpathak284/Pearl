@@ -12,21 +12,15 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a4f4c3c5.mp3?filename=romantic-background-112191.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-document.addEventListener("click", function() {
-  document.getElementById("bgMusic").play();
-}, { once: true });
-</script>
 body{
   font-family:'Poppins',sans-serif;
   color:#f5d97e;
   overflow:hidden;
+  background:black;
 }
 
+/* Blur Background */
 body::before{
   content:"";
   position:fixed;
@@ -48,26 +42,34 @@ body::before{
   justify-content:center;
   align-items:center;
   text-align:center;
+  transition:opacity 1s ease;
+}
+
+#lockScreen h1{
+  font-family:'Playfair Display',serif;
 }
 
 #lockScreen input{
-  padding:10px;
-  border-radius:20px;
+  padding:12px;
+  border-radius:25px;
   border:none;
   margin-top:20px;
   text-align:center;
+  width:200px;
 }
 
 #lockScreen button{
   margin-top:15px;
-  padding:8px 20px;
+  padding:10px 25px;
   border:none;
-  border-radius:20px;
+  border-radius:25px;
   background:#f5d97e;
   color:black;
   font-weight:bold;
+  cursor:pointer;
 }
 
+/* Main Container */
 .container{
   display:none;
   height:100vh;
@@ -87,7 +89,7 @@ body::before{
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:30px;
+  font-size:28px;
 }
 
 .photo{
@@ -113,12 +115,12 @@ button{
   border-radius:30px;
   border:none;
   cursor:pointer;
+  font-weight:bold;
 }
 
 #yesBtn{
   background:#f5d97e;
   color:black;
-  font-weight:bold;
 }
 
 #noBtn{
@@ -128,6 +130,7 @@ button{
   position:absolute;
 }
 
+/* Gold particles */
 .gold{
   position:fixed;
   width:3px;
@@ -147,12 +150,14 @@ button{
 
 <body>
 
+<!-- Password Screen -->
 <div id="lockScreen">
   <h1>Private Access 🖤</h1>
   <input type="password" id="password" placeholder="Enter Secret Code">
   <button onclick="checkPassword()">Unlock 👑</button>
 </div>
 
+<!-- Main Content -->
 <div class="container">
   <h1>Pearl 🖤</h1>
 
@@ -166,6 +171,7 @@ button{
   <button id="noBtn" onmouseover="moveButton()">NO</button>
 </div>
 
+<!-- Music -->
 <audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a4f4c3c5.mp3?filename=romantic-background-112191.mp3" type="audio/mpeg">
 </audio>
@@ -173,17 +179,20 @@ button{
 <script>
 function checkPassword(){
   var pass=document.getElementById("password").value;
-  if(pass==="Malkin"){
-    document.getElementById("lockScreen").style.display="none";
-    document.querySelector(".container").style.display="flex";
-    document.getElementById("bgMusic").play();
-    typeWriter();
+  if(pass.toLowerCase()==="malkin"){
+    document.getElementById("lockScreen").style.opacity="0";
+    setTimeout(()=>{
+      document.getElementById("lockScreen").style.display="none";
+      document.querySelector(".container").style.display="flex";
+      document.getElementById("bgMusic").play();
+      typeWriter();
+    },1000);
   } else {
     alert("Wrong password, Malkin 😉");
   }
 }
 
-const text="Pearl, from the moment you walked into my life, everything changed. You are not just someone I love... you are the woman I choose. Every day. Every lifetime. You are my peace, my fire, my future. And today I ask you — not as a boy, but as your king — will you be mine forever? 🖤";
+const text="Pearl, from the moment you walked into my life, everything changed. You are not just someone I love... you are the woman I choose. Every day. Every lifetime. You are my peace, my fire, my future. And today I ask you — will you be mine forever? 🖤";
 
 let i=0;
 function typeWriter(){
@@ -220,4 +229,3 @@ setInterval(createGold,200);
 
 </body>
 </html>
-
